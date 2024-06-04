@@ -1,0 +1,27 @@
+<%- include('partials/header')%>
+  <!--  -->
+  <%- include('partials/nav')%>
+    <!--  -->
+    <div class=" rounded-xl w-[80%] py-[10%] bg-red-200 m-auto">
+      <h1 class="text-center text-8xl font-extrabold text-red-400">login here</h1>
+
+      
+        <form class="flex flex-col items-center gap-2 justify-center gap-x-5 mt-10 " action="/loginuser" method="post">
+            <input class="w-[20%] p-1 bg-transparent border-2 border-red-300 rounded-md placeholder-white text-white" type="text" name="username" placeholder="username"> 
+            <input class="w-[20%] p-1 bg-transparent border-2 border-red-300 rounded-md placeholder-white text-white" type="password" placeholder="password" name="password">
+            <div class=" w-[20%]">
+
+                <a href="/forgetemail" class="text-red-400 ">forget password</a>
+            </div>
+            <button class="bg-red-400 px-5 py-3 text-white w-[20%] rounded-md">submit</button>
+            <div class="w-[20%] flex ">
+                <h1>dont able account? </h1>
+                <a class="text-red-400" href="/register">register</a>
+            </div>
+          </form>
+          
+
+      
+    </div>
+    <!--  -->
+    <%- include('partials/footer')%>
