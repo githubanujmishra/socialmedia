@@ -232,4 +232,6 @@ router.get('/deletepost/:id' , isloggedin , async function(req ,res , next ) {
   }
 } )
 
+console.log("hello");
+
 module.exports = router;
