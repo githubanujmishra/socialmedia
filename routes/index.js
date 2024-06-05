@@ -232,6 +232,34 @@ router.get('/deletepost/:id' , isloggedin , async function(req ,res , next ) {
   }
 } )
 
-console.log("hello");
+router.get('/updatepost/:pid' , isloggedin , async function(req ,res , next ) { 
+  try {
+    const Post = await post.findById(req.params.pid) ; 
+    res.render('updatepost' , { user : req.user , Post }) 
+  } catch (error) {
+    res.send(error) ; 
+  }
+} )
+
+router.post('/updatepost/:pid' , isloggedin , async function (req , res , next) { 
+  try {
+    await post.findByIdAndUpdate(req.params.pid ,   req.body  ) ; 
+    res.redirect(`/timeline`) ; 
+  } catch (error) {
+    res.send(error) ; 
+  }
+} )
+
+router.post('/postimage/:pid' , isloggedin , upload.single('media') , async function(req ,res , next  ) { 
+  try {
+    const Post = await post.findById(req.params.pid ) ; 
+    fs.unlinkSync(path.join( __dirname , '../' , 'public' , 'images' , Post.media ))
+    Post.media = req.file.filename ; 
+    await Post.save() ; 
+    res.redirect(`/timeline`)
+  } catch (error) {
+    res.send(error) ; 
+  }
+})
 
 module.exports = router;
